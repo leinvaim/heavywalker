@@ -4,7 +4,7 @@
             <ion-nav-back-button>
             </ion-nav-back-button>
             <ion-nav-buttons side="right">
-                <button class="button button-icon button-clear"><i class="fa fa-trophy"></i>
+                <button class="button button-icon button-clear" ng-click="openLeaderboard()"><i class="fa fa-trophy"></i>
                 </button>
             </ion-nav-buttons>
             <ion-nav-buttons side="left">
@@ -22,22 +22,22 @@
         </ion-header-bar>
         <ion-content>
             <ion-list>
-                <ion-item nav-clear menu-close>
+                <ion-item nav-clear menu-close href="#/sideMenu/home">
                     <i class="fa fa-home"></i> Home
                 </ion-item>
-                <ion-item nav-clear menu-close>
+                <ion-item nav-clear menu-close href="#/sideMenu/inwalk">
                     <i class="fa fa-flag"></i> Start Walk
                 </ion-item>
-                <ion-item nav-clear menu-close>
+                <ion-item nav-clear menu-close href="#/sideMenu/goal">
                     <i class="fa fa-check-square-o"></i> Goal
                 </ion-item>
-                <ion-item nav-clear menu-close>
+                <ion-item nav-clear menu-close href="#/sideMenu/profile">
                     <i class="fa fa-user"></i> Profile
                 </ion-item>
-                <ion-item nav-clear menu-close>
+                <ion-item nav-clear menu-close href="#/sideMenu/leaderboard">
                     <i class="fa fa-trophy"></i> Leaderboard
                 </ion-item>
-                <ion-item nav-clear menu-close>
+                <ion-item nav-clear menu-close href="#/sideMenu/setting">
                     <i class="fa fa-cog"></i> Settings
                 </ion-item>
                 <ion-item nav-clear menu-close ng-click="logout()">

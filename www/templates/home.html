@@ -1,5 +1,5 @@
-<ion-view >
-    <ion-nav-title >
+<ion-view>
+    <ion-nav-title>
         <img src="img/icon.jpg" style="width:50px; height:50px;">
     </ion-nav-title>
     <ion-content class="has-header">
@@ -14,7 +14,12 @@
             </div>
         </div>
         <div class="row">
-            <h4>Current Goal:</h4>
+            <h4>Current Goal</h4>
+        </div>
+        <div class="row">
+            <div style="height: 30px; width: {{progress}}%; transition: width 0.1s; background: palegreen; text-align:center; padding:5px;">
+                {{progress}} %
+            </div>
         </div>
         <div class="row">
             <h4>Lifetime Statistics:</h4>
