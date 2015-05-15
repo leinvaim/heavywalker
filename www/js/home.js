@@ -6,6 +6,6 @@ angular.module('starter')
         $state.go('sideMenu.inwalk');
     }
 
-    $scope.progress = 100;
+    $scope.progress = 90;
 
 });

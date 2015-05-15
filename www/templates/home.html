@@ -13,16 +13,35 @@
                 </button>
             </div>
         </div>
-        <div class="row">
-            <h4>Current Goal</h4>
-        </div>
-        <div class="row">
-            <div style="height: 30px; width: {{progress}}%; transition: width 0.1s; background: palegreen; text-align:center; padding:5px;">
-                {{progress}} %
+        <div class="card">
+            <div class="item item-divider">
+                Current Goal
+            </div>
+            <div class="item item-text-wrap">
+                <div class="row">
+                    <div style="background-color:gray; width: 100%">
+                        <div style="height: 30px; width: {{progress}}%; transition: width 0.1s; background: palegreen; text-align:center; padding:5px;">
+                            {{progress}} %
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    Steps: 9000 / 10000
+                    <br/> Time Walking: 1 hour 20 Mins
+                </div>
             </div>
         </div>
-        <div class="row">
-            <h4>Lifetime Statistics:</h4>
+        <div class="card">
+            <div class="item item-divider">
+                Lifetime Statistics
+            </div>
+            <div class="item item-text-wrap">
+                <div class="row">
+                    Steps: 22091
+                    <br/> Time Walking: 5 hour 20 Mins
+                    <br/> Overall Well-Being Rating: 78%
+                </div>
+            </div>
         </div>
     </ion-content>
 </ion-view>
