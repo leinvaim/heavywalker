@@ -13,5 +13,6 @@ angular.module('starter')
         $scope.isStarted = true;
 
     }
+    $scope.wellBeing = 'good';
 
 });

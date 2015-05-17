@@ -1,1 +1,9 @@
 /* Empty. Add your own CSS if you like */
+.wellBeingCaution {
+	background-color:orangered; 
+	color:black;
+}
+.wellBeingGood {
+	background-color:limegreen; 
+	color:black;
+}

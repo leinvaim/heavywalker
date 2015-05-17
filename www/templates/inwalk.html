@@ -17,11 +17,20 @@
                 Speed
             </ion-item>
         </div>
-        <div class="row">
-            Well Being Status
-        </div>
-        <div class="row">
-            Going Well
+        <div class="card">
+            <div class="item item-divider">
+                Well Being Status
+            </div>
+            <div class="item item-text-wrap wellBeingGood" ng-show="wellBeing === 'good'">
+                <div class="row">
+                    Going Well
+                </div>
+            </div>
+            <div class="item item-text-wrap wellBeingCaution" ng-show="wellBeing === 'caution'">
+                <div class="row">
+                    Caution
+                </div>
+            </div>
         </div>
         <div class="row" style="text-align:-webkit-center;">
             <div class="col">
@@ -29,7 +38,7 @@
                     <i class="fa fa-pause"></i>
                 </button>
                 <button class="button button-large button-balanced" style="width:50%;" ng-click="start()" ng-show="isPaused">
-                   Start
+                    Start
                 </button>
             </div>
         </div>
