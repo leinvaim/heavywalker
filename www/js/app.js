@@ -10,6 +10,22 @@ angular.module('starter', ['ionic', 'ngCordova'])
     $ionicPlatform.ready(function() {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
         // for form inputs)
+        // console.log('running');
+        // console.log('pedometer', pedometer);
+        // var successHandler = function() {
+        //     console.log('it works');
+        //     pedometer.startPedometerUpdates(function(data) {
+        //         console.log('steps', data.numberOfSteps);
+        //     }, function(){
+        //         console.log('no data');
+        //     });
+        // };
+        // var failureCallback = function() {
+        //     console.log('error');
+        // };
+        // pedometer.isStepCountingAvailable(successHandler, failureCallback);
+
+
         if (window.cordova && window.cordova.plugins.Keyboard) {
             cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         }

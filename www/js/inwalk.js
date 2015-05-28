@@ -1,9 +1,11 @@
 angular.module('starter')
 
-.controller('InWalkCtrl', function($scope, $ionicModal, $state, $rootScope, $http, $cordovaDeviceMotion) {
+.controller('InWalkCtrl', function($scope, $ionicModal, $state, $rootScope, $http, $cordovaDeviceMotion, $ionicPlatform,
+    pedometerService) {
     $scope.isPaused = false;
     $scope.isStarted = true;
     $scope.accelerometer = {};
+    $scope.pedometer = {};
     $scope.wellBeing = 'good';
     var watch = null;
     var options = {
@@ -28,7 +30,7 @@ angular.module('starter')
     // }, false);
 
 
-    var urlGet = 'https://jsonp.afeld.me/?url=http%3A%2F%2Fheavywalkersapi.esy.es%2FgetLatestAlgorithmValues';
+    var urlGet = 'http://heavywalkersapi.esy.es/getLatestAlgorithmValues';
     $http.get(urlGet).then(function(response) {
         $scope.algorithmValues = response.data;
     });
@@ -47,6 +49,39 @@ angular.module('starter')
     }
 
 
+    pedometerService.startUpdates();
+
+
+    $scope.pedometer = pedometerService;
+
+    /***********************************
+     * Pedometer
+     * Use different ondeviceready - ionic version
+     * return number of steps.
+     *************************************/
+    // $ionicPlatform.ready(function() {
+    //         console.log('running');
+    //         console.log('pedometer', pedometer);
+    //         var successHandler = function() {
+    //             console.log('it works');
+    //             pedometer.startPedometerUpdates(function(data) {
+    //                 $scope.pedometer.steps = data.numberOfSteps;
+    //             }, function(){
+    //                 console.log('no data');
+    //             });
+    //         };
+    //         var failureCallback = function() {
+    //             console.log('error');
+    //         };
+    //         pedometer.isStepCountingAvailable(successHandler, failureCallback);
+    //     });
+
+
+    /*******************************************
+     * Start Monitor
+     * Use device accelerometer and return acceleration values
+     * return x,y,z, timestamp
+     ********************************************/
     startMonitor();
 
     function startMonitor() {
@@ -54,6 +89,7 @@ angular.module('starter')
         watch = $cordovaDeviceMotion.watchAcceleration(options);
         console.log('watch created');
         document.addEventListener("deviceready", function() {
+            console.log('pedometer', pedometer);
             console.log('device ready monitor');
             console.log('watch is', watch)
             watch.then(
