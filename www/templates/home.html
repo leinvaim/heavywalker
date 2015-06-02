@@ -1,6 +1,6 @@
 <ion-view>
     <ion-nav-title>
-        <img src="img/icon.jpg" style="width:50px; height:50px;">
+        <span style="color:#227722; font-weight:bold">HeavyWalkers</span> <img src="img/icon.jpg" style="height:20px; position:relative; top:4px;">
     </ion-nav-title>
     <ion-content class="has-header">
         <div class="row">
@@ -20,13 +20,13 @@
             <div class="item item-text-wrap">
                 <div class="row">
                     <div style="background-color:gray; width: 100%">
-                        <div style="height: 30px; width: {{progress}}%; transition: width 0.1s; background: palegreen; text-align:center; padding:5px;">
-                            <strong> {{progress}} % </strong>
+                        <div style="height: 30px; width: {{pedometer.steps / goal.currentGoal * 100}}%; max-width: 100%; transition: width 0.1s; background: palegreen; text-align:center; padding:5px;">
+                            <strong style="white-space: nowrap;"> {{pedometer.steps / goal.currentGoal * 100| number : 0}}% </strong>
                         </div>
                     </div>
                 </div>
                 <div class="row">
-                    Steps: 9,000 / 10,000
+                    Steps: {{pedometer.steps}} / {{goal.currentGoal}}
                     <br/> Time Walking: 1 hour 20 Mins
                 </div>
             </div>

@@ -32,7 +32,7 @@ angular.module('starter')
                     });
                 };
                 var failureCallback = function() {
-                    console.log('error');
+                    console.log('error no pedometer');
                 };
                 pedometer.isStepCountingAvailable(successHandler, failureCallback);
             });
