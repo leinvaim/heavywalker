@@ -1,7 +1,7 @@
 angular.module('starter')
 
 .controller('InWalkCtrl', function($scope, $ionicModal, $state, $rootScope, $http, $cordovaDeviceMotion, $ionicPlatform,
-    pedometerService) {
+    pedometerService, goalService) {
     $scope.isPaused = false;
     $scope.isStarted = true;
     $scope.accelerometer = {};
@@ -53,7 +53,7 @@ angular.module('starter')
 
 
     $scope.pedometer = pedometerService;
-
+    $scope.goal = goalService;
     /***********************************
      * Pedometer
      * Use different ondeviceready - ionic version
@@ -91,7 +91,7 @@ angular.module('starter')
         document.addEventListener("deviceready", function() {
             console.log('pedometer', pedometer);
             console.log('device ready monitor');
-            console.log('watch is', watch)
+            console.log('watch is', watch);
             watch.then(
                 null,
                 function(error) {
@@ -105,6 +105,9 @@ angular.module('starter')
                     $scope.accelerometer.Z = result.z;
                     $scope.accelerometer.timeStamp = result.timestamp;
                     console.log('monitor', $scope.accelerometer);
+                    // if(result.x > 6){
+                    //     showAlert();
+                    // }
                 });
             // watch.clearWatch();
             // // OR
@@ -118,4 +121,23 @@ angular.module('starter')
         }, false);
     }
 
+    function alertDismissed() {
+        // do something
+    }
+
+    // Show a custom alertDismissed
+    //
+    function showAlert() {
+        navigator.notification.alert(
+            'Slow down!', // message
+            alertDismissed, // callback
+            'Warning', // title
+            'OK' // buttonName
+        );
+        navigator.notification.beep(3);
+        navigator.notification.vibrate(4000);
+        //navigator.notification.vibrate([1000, 500, 1000, 500, 1000]);
+    }
+
+    $scope.showAlert = showAlert;
 });
