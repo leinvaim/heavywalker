@@ -1,21 +1,22 @@
 angular.module('starter')
 
-.controller('LeaderboardCtrl', function($scope, $ionicModal, $state, $rootScope) {
+.controller('LeaderboardCtrl', function($scope, $ionicModal, $state, $rootScope, pedometerService) {
     $scope.user = JSON.parse(window.localStorage.userID);
+    console.log('leaderboard');
     $scope.leaderboard = [{
         username: 'Jordan',
-        steps: 15000,
+        steps: 100,
     }, {
         username: 'Darren',
-        steps: 14999
+        steps: 120
     }, {
         username: 'Dawood',
-        steps: 14989
+        steps: 111
     }, {
         username: $scope.user.user,
-        steps: 10000
+        steps: pedometerService.steps
     }, {
-        username: 'Darren',
-        steps: 14999
+        username: 'Kelvin',
+        steps: 12000
     }];
 });
