@@ -100,6 +100,7 @@ angular.module('starter')
                 },
                 function(result) {
                     console.log('result');
+                    console.log('Orientation is ' + screen.orientation);
                     $scope.accelerometer.X = result.x;
                     $scope.accelerometer.Y = result.y;
                     $scope.accelerometer.Z = result.z;
