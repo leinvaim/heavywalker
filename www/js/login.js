@@ -7,6 +7,11 @@ angular.module('starter')
         password: 'admin',
         weight: 60,
         height: 170
+    }, {
+        user: 'jordan',
+        password: 'jordan',
+        weight: 150,
+        height: 170
     }];
     $scope.enteredLogin = {};
     $scope.wrongPassword = false;
