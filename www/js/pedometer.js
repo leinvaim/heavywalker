@@ -12,6 +12,10 @@ angular.module('starter')
         function startUpdates(stepResults) {
             console.log('inside function');
 
+            if(!window.pedometer) {
+                return;
+            }
+
             if (started) {
                 return;
             }
