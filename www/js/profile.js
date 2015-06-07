@@ -8,7 +8,15 @@ angular.module('starter')
         console.log('update', window.localStorage.userID);
         window.localStorage.userID = JSON.stringify($scope.user);
         console.log('after', window.localStorage.userID);
-        alert('Profile updated');
+        navigator.notification.alert(
+            'Profile Updated', // message
+            alertDismissed, // callback
+            'Success', // title
+            'OK' // buttonName
+        );
     }
 
+    function alertDismissed() {
+        // do something
+    }
 });
