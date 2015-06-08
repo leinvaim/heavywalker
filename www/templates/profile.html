@@ -1,5 +1,26 @@
 <ion-view view-title="Edit Profile">
     <ion-content>
-        Edit Profile
+        <div>
+            <div>
+                <div class="item item-avatar">
+                    <img src="img/profilepic.jpg">
+                    <h2>Jordan McFly</h2>
+                    <p>November 05, 1992</p>
+                </div>
+                <div class="list">
+                    <label class="item item-input">
+                        <span class="input-label">Height</span>
+                        <input type="number" ng-model="user.height" style="width: 30px;"> CM
+                    </label>
+                    <label class="item item-input">
+                        <span class="input-label">Weight</span>
+                        <input type="number" ng-model="user.weight" style="width: 30px;"> KG
+                    </label>
+                </div>
+                <button ng-click="update()">
+                    <i class="icon ion-chatbox"></i> Update Profile
+                </button>
+            </div>
+        </div>
     </ion-content>
 </ion-view>

@@ -99,7 +99,7 @@ angular.module('starter')
         watch = $cordovaDeviceMotion.watchAcceleration(options);
         console.log('watch created');
         document.addEventListener("deviceready", function() {
-            console.log('pedometer', pedometer);
+            // console.log('pedometer', pedometer);
             console.log('device ready monitor');
             console.log('watch is', watch);
             watch.then(
@@ -112,6 +112,7 @@ angular.module('starter')
                 },
                 function(result) {
                     console.log('result');
+                    console.log('Orientation is ' + screen.orientation);
                     $scope.accelerometer.X = result.x;
                     $scope.accelerometer.Y = result.y;
                     $scope.accelerometer.Z = result.z;

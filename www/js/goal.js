@@ -5,18 +5,27 @@ angular.module('starter')
     console.log('calling this');
     $scope.currentGoal = goalService.getGoal();
     $scope.goal = {
-    	newGoal: undefined
+        newGoal: undefined
     }
     $scope.changeGoal = function() {
-    	var convertedNewGoal = parseInt($scope.goal.newGoal);
-    	console.log($scope.goal.newGoal);
-    	if(convertedNewGoal > 0) {
-    		goalService.setGoal(convertedNewGoal);
-    		$scope.goal.newGoal = undefined;
-    		$scope.currentGoal = goalService.getGoal();
-    	}else {
-    		$scope.goal.newGoal = undefined;
-    		alert('New Goal should be greater than 0');
-    	} 
+        var convertedNewGoal = parseInt($scope.goal.newGoal);
+        console.log($scope.goal.newGoal);
+        if (convertedNewGoal > 0) {
+            goalService.setGoal(convertedNewGoal);
+            $scope.goal.newGoal = undefined;
+            $scope.currentGoal = goalService.getGoal();
+        } else {
+            $scope.goal.newGoal = undefined;
+            navigator.notification.alert(
+                'Goal should be greater than 0', // message
+                alertDismissed, // callback
+                'Failed', // title
+                'OK' // buttonName
+            );
+        }
+    }
+
+    function alertDismissed() {
+        // do something
     }
 });

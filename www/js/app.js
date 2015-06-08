@@ -66,6 +66,7 @@ angular.module('starter', ['ionic', 'ngCordova'])
             }
         })
         .state('sideMenu.leaderboard', {
+            cache: false,
             url: "/leaderboard",
             views: {
                 'menuContent': {
@@ -75,6 +76,7 @@ angular.module('starter', ['ionic', 'ngCordova'])
             }
         })
         .state('sideMenu.goal', {
+            cache: false,
             url: "/goal",
             views: {
                 'menuContent': {
@@ -84,6 +86,7 @@ angular.module('starter', ['ionic', 'ngCordova'])
             }
         })
         .state('sideMenu.profile', {
+            cache: false,
             url: "/profile",
             views: {
                 'menuContent': {
@@ -102,6 +105,7 @@ angular.module('starter', ['ionic', 'ngCordova'])
             }
         })
         .state('sideMenu.inwalk', {
+            cache: false,
             url: "/inwalk",
             views: {
                 'menuContent': {

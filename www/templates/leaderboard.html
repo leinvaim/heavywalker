@@ -1,7 +1,7 @@
 <ion-view view-title="Leaderboard">
     <ion-content>
         <ion-list>
-            <ion-item ng-repeat="account in leaderboard">
+            <ion-item ng-repeat="account in leaderboard | orderBy:'-steps'">
                 <div class="row" >
                     <div class="col col-10">
                         <div ng-hide="$index === 0">
