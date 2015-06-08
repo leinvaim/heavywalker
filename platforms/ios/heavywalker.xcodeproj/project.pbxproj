@@ -44,6 +44,10 @@
 		C4DCD93A57AD495C9382EE7B /* CDVAccelerometer.m in Sources */ = {isa = PBXBuildFile; fileRef = 34BD3EA0B3D342FEA5EF3841 /* CDVAccelerometer.m */; };
 		AAD854253CBE42B09A2C57ED /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 58C6C97F7A5145E9920CEA02 /* CoreMotion.framework */; };
 		6078BC777D0F4D39BACD3E16 /* Pedometer.m in Sources */ = {isa = PBXBuildFile; fileRef = 794A51B3EFF049B0A3C0DF16 /* Pedometer.m */; };
+		DB468A8288F74CF2A6304328 /* CDVNotification.m in Sources */ = {isa = PBXBuildFile; fileRef = A70FF816A3F94D5CA7A4D8C2 /* CDVNotification.m */; };
+		6CDFB5AE6ADC47449308DE6A /* CDVNotification.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 79E226DBA26F478F8D76DA7D /* CDVNotification.bundle */; };
+		A530CCE82C4C4005B5B4FBAD /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38491DFCBAA5459CBBB08763 /* AudioToolbox.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		0F1199423CDB492895F45549 /* CDVVibration.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EBB19486344E9DB0B87948 /* CDVVibration.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +122,12 @@
 		58C6C97F7A5145E9920CEA02 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "CoreMotion.framework"; path = "System/Library/Frameworks/CoreMotion.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
 		794A51B3EFF049B0A3C0DF16 /* Pedometer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "Pedometer.m"; path = "cordova-plugin-pedometer/Pedometer.m"; sourceTree = "<group>"; fileEncoding = 4; };
 		8390FDA408A14CEAB670F083 /* Pedometer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Pedometer.h"; path = "cordova-plugin-pedometer/Pedometer.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		A70FF816A3F94D5CA7A4D8C2 /* CDVNotification.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVNotification.m"; path = "org.apache.cordova.dialogs/CDVNotification.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		12441F9723F8432A98B92934 /* CDVNotification.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVNotification.h"; path = "org.apache.cordova.dialogs/CDVNotification.h"; sourceTree = "<group>"; fileEncoding = 4; };
+		79E226DBA26F478F8D76DA7D /* CDVNotification.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = "CDVNotification.bundle"; path = "Resources\CDVNotification.bundle"; sourceTree = "<group>"; };
+		38491DFCBAA5459CBBB08763 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "AudioToolbox.framework"; path = "System/Library/Frameworks/AudioToolbox.framework"; sourceTree = SDKROOT; fileEncoding = 4; };
+		74EBB19486344E9DB0B87948 /* CDVVibration.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "CDVVibration.m"; path = "org.apache.cordova.vibration/CDVVibration.m"; sourceTree = "<group>"; fileEncoding = 4; };
+		A44CCED0B2C14CD683083908 /* CDVVibration.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "CDVVibration.h"; path = "org.apache.cordova.vibration/CDVVibration.h"; sourceTree = "<group>"; fileEncoding = 4; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +140,7 @@
 				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
 				305D5FD1115AB8F900A74A75 /* MobileCoreServices.framework in Frameworks */,
 				AAD854253CBE42B09A2C57ED /* CoreMotion.framework in Frameworks */,
+				A530CCE82C4C4005B5B4FBAD /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -191,6 +202,7 @@
 				308D052D1370CCF300D202BF /* icons */,
 				308D05311370CCF300D202BF /* splash */,
 				8D1107310486CEB800E47090 /* heavywalker-Info.plist */,
+				79E226DBA26F478F8D76DA7D /* CDVNotification.bundle */,
 			);
 			name = Resources;
 			path = "heavywalker/Resources";
@@ -203,6 +215,7 @@
 				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
 				305D5FD0115AB8F900A74A75 /* MobileCoreServices.framework */,
 				58C6C97F7A5145E9920CEA02 /* CoreMotion.framework */,
+				38491DFCBAA5459CBBB08763 /* AudioToolbox.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -226,6 +239,10 @@
 				0B0D3436541F464C85DFA202 /* CDVAccelerometer.h */,
 				794A51B3EFF049B0A3C0DF16 /* Pedometer.m */,
 				8390FDA408A14CEAB670F083 /* Pedometer.h */,
+				A70FF816A3F94D5CA7A4D8C2 /* CDVNotification.m */,
+				12441F9723F8432A98B92934 /* CDVNotification.h */,
+				74EBB19486344E9DB0B87948 /* CDVVibration.m */,
+				A44CCED0B2C14CD683083908 /* CDVVibration.h */,
 			);
 			name = Plugins;
 			path = "heavywalker/Plugins";
@@ -379,6 +396,7 @@
 				7E7966E11810823500FA85AD /* icon-50@2x.png in Resources */,
 				7E7966E51810823500FA85AD /* icon-76@2x.png in Resources */,
 				30FC414916E50CA1004E6F35 /* icon-72@2x.png in Resources */,
+				6CDFB5AE6ADC47449308DE6A /* CDVNotification.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,6 +432,8 @@
 				67D3E0E07D084E98AA5E0458 /* UIWebViewExtension.m in Sources */,
 				C4DCD93A57AD495C9382EE7B /* CDVAccelerometer.m in Sources */,
 				6078BC777D0F4D39BACD3E16 /* Pedometer.m in Sources */,
+				DB468A8288F74CF2A6304328 /* CDVNotification.m in Sources */,
+				0F1199423CDB492895F45549 /* CDVVibration.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
