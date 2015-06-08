@@ -1,0 +1,47 @@
+<ion-view>
+    <ion-nav-title>
+        <span style="color:#227722; font-weight:bold">HeavyWalkers</span> <img src="img/Circle Stencil.png" style="height:20px; position:relative; top:4px;">
+    </ion-nav-title>
+    <ion-content class="has-header">
+        <div class="row">
+            <h3>Welcome, {{user.user}}</h3>
+        </div>
+        <div class="row" style="text-align:-webkit-center;">
+            <div class="col">
+                <button class="button button-large button-balanced" style="width:60%;" ng-click="startWalking()">
+                    Start
+                </button>
+            </div>
+        </div>
+        <div class="card">
+            <div class="item item-divider">
+                Current Goal
+            </div>
+            <div class="item item-text-wrap">
+                <div class="row">
+                    <div style="background-color:gray; width: 100%">
+                        <div style="height: 30px; width: {{pedometer.steps / goal.currentGoal * 100}}%; max-width: 100%; transition: width 0.1s; background: palegreen; text-align:center; padding:5px;">
+                            <strong style="white-space: nowrap;"> {{pedometer.steps / goal.currentGoal * 100| number : 0}}% </strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    Steps: {{pedometer.steps}} / {{goal.currentGoal}}
+                    <br/> Time Walking: 1 hour 20 Mins
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="item item-divider">
+                Lifetime Statistics
+            </div>
+            <div class="item item-text-wrap">
+                <div class="row">
+                    Steps: 22,091
+                    <br/> Time Walking: 5 hour 20 Mins
+                    <br/> Overall Well-Being Rating: 78%
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
