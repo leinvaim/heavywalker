@@ -19,6 +19,8 @@ angular.module('starter')
          */
         function getUser() {
             vm.user = JSON.parse(window.localStorage.userID);
+            vm.user.name = vm.user.user;
+            vm.user.memberSince = new Date();
             return vm.user;
         }
 
