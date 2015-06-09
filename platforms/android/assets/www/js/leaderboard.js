@@ -13,7 +13,7 @@ angular.module('starter')
         username: 'Dawood',
         steps: 111
     }, {
-        username: $scope.user.user,
+        username: $scope.user.username,
         steps: pedometerService.steps
     }, {
         username: 'Kelvin',

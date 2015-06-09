@@ -5,8 +5,8 @@ angular.module('starter')
     
     $scope.user = JSON.parse(window.localStorage.userID);
     
-    $scope.isPaused = false;
-    $scope.isStarted = true;
+    $scope.isPaused = true;
+    $scope.isStarted = false;
     
     $scope.accelerometer = {};
     $scope.pedometer = {};
@@ -19,6 +19,7 @@ angular.module('starter')
     $scope.currentSteppingVelocity = 0; // m/s
     $scope.dangerToWellBeingRatio = 0;
     $scope.workingRatioValues = [];
+    $scope.wellBeingStatus = "Not enough data collected"; // some data must be collected first
     $scope.isXNegative = false;
     $scope.isZNegative = false;
     $scope.isAlreadyWalking = false;
@@ -26,24 +27,6 @@ angular.module('starter')
     var GRAVITY = 9.8, // m/s^2
         ACCELEROMETER_SENSITIVITY = 0.2, // m/s^2
         TIME_TO_TAKE_AVG_OVER = 5000; // milliseconds
-
-
-    // document.addEventListener("deviceready", function() {
-    //     console.log('current');
-    //     console.log('cordova device motion', $cordovaDeviceMotion);
-    //     console.log('navigator', navigator.accelerometer);
-    //     $cordovaDeviceMotion.getCurrentAcceleration().then(function(result) {
-    //         console.log('current accel');
-    //         $scope.accelerometer.X = result.x;
-    //         $scope.accelerometer.Y = result.y;
-    //         $scope.accelerometer.Z = result.z;
-    //         $scope.accelerometer.timeStamp = result.timestamp;
-    //     }, function(err) {
-    //         // An error occurred. Show a message to the user
-    //     });
-
-    // }, false);
-
 
     var urlGet = 'http://heavywalkersapi.esy.es/getLatestAlgorithmValues';
     $http.get(urlGet).then(function(response) {
@@ -55,7 +38,14 @@ angular.module('starter')
         $scope.isStarted = false;
         watch.clearWatch();
         watch = null;
-
+        $scope.currentWalkingVelocity = 0; // m/s
+        $scope.currentSteppingVelocity = 0; // m/s
+        $scope.dangerToWellBeingRatio = 0;
+        $scope.workingRatioValues = [];
+        $scope.wellBeingStatus = "Not enough data collected"; // some data must be collected first
+        $scope.isXNegative = false;
+        $scope.isZNegative = false;
+        $scope.isAlreadyWalking = false;
     };
     $scope.start = function() {
         $scope.isPaused = false;
@@ -63,9 +53,7 @@ angular.module('starter')
         startMonitor();
     };
 
-
     pedometerService.startUpdates();
-
 
     $scope.pedometer = pedometerService;
     $scope.goal = goalService;
@@ -102,31 +90,25 @@ angular.module('starter')
     function startMonitor() {
         watch = $cordovaDeviceMotion.watchAcceleration(options);
         document.addEventListener("deviceready", function() {
-            watch.then(
-                null,
-                function(error) {
-                    // An error occurred
-                    console.log('Accelerometer Error', error);
-                },
-                function(result) {
-                    $scope.accelerometer.X = result.x;
-                    $scope.accelerometer.Y = result.y;
-                    $scope.accelerometer.Z = result.z;
-                    $scope.accelerometer.timeStamp = result.timestamp;
-                    // if(result.x > 6){
-                    //     showAlert();
-                    // }
-                    
-                    updateWellbeing();
-                });
-            // watch.clearWatch();
-            // // OR
-            // $cordovaDeviceMotion.clearWatch(watch)
-            //     .then(function(result) {
-            //         // success
-            //     }, function(error) {
-            //         // error
-            //     });
+            if ($scope.isStarted) {
+                watch.then(
+                    null,
+                    function(error) {
+                        // An error occurred
+                        console.log('Accelerometer Error', error);
+                    },
+                    function(result) {
+                        $scope.accelerometer.X = result.x;
+                        $scope.accelerometer.Y = result.y;
+                        $scope.accelerometer.Z = result.z;
+                        $scope.accelerometer.timeStamp = result.timestamp;
+                        // if(result.x > 6){
+                        //     showAlert();
+                        // }
+                        
+                        updateWellbeing();
+                    });
+            }
 
         }, false);
     }
@@ -137,12 +119,13 @@ angular.module('starter')
 
     // Show a custom alertDismissed
     //
-    function showAlert() {
+    function showAlert(message, title, buttonName) {
+        $scope.pause();
         navigator.notification.alert(
-            'Slow down!', // message
+            message,
             alertDismissed, // callback
-            'Warning', // title
-            'OK' // buttonName
+            title,
+            "Close"
         );
         navigator.notification.beep(3);
         navigator.notification.vibrate(4000);
@@ -178,8 +161,8 @@ angular.module('starter')
              }
              
              $scope.dangerToWellBeingRatio = ratioSum / $scope.workingRatioValues.length;
-             
              $scope.workingRatioValues.pop(); // remove last value
+             showAlertIfInDanger();
         }
         
     }
@@ -231,9 +214,16 @@ angular.module('starter')
             } else {
                 // User is stepping upward, reset stepping velocity
                 $scope.currentSteppingVelocity = 0;
+                
+                // Check if pedometer can count steps
+                pedometer.isStepCountingAvailable(function(){
+                    // It can count steps, do nothing
+                }, function(){
+                    // Increase step count manually
+                    $scope.pedometer.steps++;
+                });
             }
 
-                
             return $scope.currentSteppingVelocity;
             
         } else {
@@ -248,6 +238,24 @@ angular.module('starter')
             Math.pow($scope.accelerometer.Z, 2));
             
         return totalAcceleration > GRAVITY + ACCELEROMETER_SENSITIVITY; // accelerometer is not perfect
+    }
+    
+    function showAlertIfInDanger() {       
+        if ($scope.dangerToWellBeingRatio < 0.4) {
+			// Safe
+            $scope.wellBeingStatus = "Safe";
+		} else if ($scope.dangerToWellBeingRatio < 1) {
+			// Caution
+            $scope.wellBeingStatus = "Caution";
+		} else if ($scope.dangerToWellBeingRatio < 1.7) { 
+			// Danger
+            $scope.wellBeingStatus = "Danger";
+            showAlert("Your exercise is endangering your well-being. Consider taking a break.", "Danger");
+		} else {
+			// Stop exercising immediately
+            $scope.wellBeingStatus = "Stop!!!";
+            showAlert("You should stop exercise immediately before you hurt yourself", "Stop Immediately!");
+		}
     }
     
 });

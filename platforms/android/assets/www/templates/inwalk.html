@@ -6,7 +6,7 @@
                 Steps: {{pedometer.steps}}
             </ion-item>
             <ion-item class="col col-50">
-                Current Goal
+                Current Goal: {{goal.currentGoal}}
             </ion-item>
         </div>
         <div class="row">
@@ -14,7 +14,7 @@
                 Distance
             </ion-item>
             <ion-item class="col col-50">
-                Speed
+                Speed: {{currentWalkingVelocity}} m/s
             </ion-item>
         </div>
 
@@ -29,14 +29,10 @@
             <div class="item item-divider">
                 Well Being Status
             </div>
-            <div class="item item-text-wrap wellBeingGood" ng-show="wellBeing === 'good'">
+            <!-- TODO add ngStyle for different wellBeingStatuses -->
+            <div class="item item-text-wrap">
                 <div class="row">
-                    Going Well
-                </div>
-            </div>
-            <div class="item item-text-wrap wellBeingCaution" ng-show="wellBeing === 'caution'">
-                <div class="row">
-                    Caution
+                    {{wellBeingStatus}}
                 </div>
             </div>
         </div>
@@ -49,21 +45,6 @@
                     Start
                 </button>
             </div>
-        </div>
-        <div>
-            {{algorithmValues}}
-        </div>
-        <div>
-            X: {{accelerometer.X}}
-            <br/> Y: {{accelerometer.Y}}
-            <br/> Z: {{accelerometer.Z}}
-            <br/> time: {{accelerometer.timeStamp}}
-            <br/> danger to well being ratio: {{dangerToWellBeingRatio}}
-        </div>
-        <div>
-            <button class="button button-large button-assertive" style="width:50%;" ng-click="showAlert()">
-                Show Alert
-            </button>
         </div>
     </ion-content>
 </ion-view>
