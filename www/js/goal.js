@@ -8,22 +8,29 @@ angular.module('starter')
         newGoal: undefined
     }
     $scope.changeGoal = function() {
+        console.log('goal change');
         var convertedNewGoal = parseInt($scope.goal.newGoal);
         console.log($scope.goal.newGoal);
+        console.log('converted', convertedNewGoal);
         if (convertedNewGoal > 0) {
             goalService.setGoal(convertedNewGoal);
             $scope.goal.newGoal = undefined;
             $scope.currentGoal = goalService.getGoal();
         } else {
-            $scope.goal.newGoal = undefined;
-            navigator.notification.alert(
-                'Goal should be greater than 0', // message
-                alertDismissed, // callback
-                'Failed', // title
-                'OK' // buttonName
-            );
+            // $scope.goal.newGoal = undefined;
+            // navigator.notification.alert(
+            //     'Goal should be greater than 0', // message
+            //     alertDismissed, // callback
+            //     'Failed', // title
+            //     'OK' // buttonName
+            // );
         }
     }
+    // $scope.fart = fart;
+
+    // function fart() {
+    //     console.log('fart');
+    // }
 
     function alertDismissed() {
         // do something
