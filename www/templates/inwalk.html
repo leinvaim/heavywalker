@@ -59,7 +59,7 @@
                     <div class="card list">
                         <div class="item item-icon-left item-balanced"><i class="icon fa fa-flag-o"></i> Distance</div>
                         <div class="item item-stable">
-                            <p>{{pedometer.steps * 0.6}} meters</p>
+                            <p>{{pedometer.steps * 0.6 | number : 2}} M</p>
                         </div>
                     </div>
                 </div>
@@ -149,7 +149,7 @@
                 </button>
             </div>
         </div> -->
-        <md-list-item class="assertive startButton" style="margin: 20px 10px;" ng-click="pause()"  ng-show="isStarted">
+        <md-list-item class="balanced pauseButton" style="margin: 20px 10px;" ng-click="pause()"  ng-show="isStarted">
             <p><i class="fa fa-pause"></i> Stop</p>
         </md-list-item>
         <md-list-item class="balanced startButton" style="margin: 20px 10px;" ng-click="start()"  ng-show="isPaused">
