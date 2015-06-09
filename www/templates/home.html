@@ -3,21 +3,45 @@
         <span style="color:#227722; font-weight:bold">HeavyWalkers</span> <img src="img/Circle Stencil.png" style="height:20px; position:relative; top:4px;">
     </ion-nav-title>
     <ion-content class="has-header">
-        <div class="row">
-            <div class="item-avatar">
+        <div class="list" style="padding: 0 0 1px 0;box-shadow: 0 0 15px grey;margin: 0;z-index: 10;">
+            <a class="item item-avatar item-balanced profile" href="#/sideMenu/profile">
                 <img src="img/profilepic.jpg">
-                <h2 style="margin-top:8px;">{{user.user}}</h2>
+                <h2 style="color: white;font-weight: bold;">{{user.user}}</h2>
+                <p style="color: lightgreen;">Nine Inch Nails</p>
+                <!-- <button class="button balanced button-icon">
+                    <i class="icon ion-chevron-right"></i>
+                </button> -->
+            </a>
+            <div class="item item-text-wrap">
+                <h1 class="md-title balanced"><i class="icon ion-checkmark-circled"></i> Current Goal</h1>
+                <div class="item-text-wrap">
+                    <div style="background-color:#EAEAEA; width: 100%; border-radius: 5px;">
+                        <!-- <div style="height: 30px; width: {{pedometer.steps / goal.currentGoal * 100}}%; max-width: 100%; transition: width 0.1s; text-align:center; padding:5px;" class="item bar" ng-class="{bar-balanced: (progress < 70 && progress >=30), bar-assertive: (progress < 30), bar-balanced: (proress >=70)}"> -->
+                        <div style="height: 30px; width: {{pedometer.steps / goal.currentGoal * 100}}%; max-width: 100%; transition: width 0.1s; text-align:center; padding:5px; border: 0; border-radius: 5px;" class="item bar" ng-class="{'bar-assertive': (pedometer.steps / goal.currentGoal * 100)<30, 'bar-energized': (pedometer.steps / goal.currentGoal * 100)>=30&&(pedometer.steps / goal.currentGoal * 100)<70, 'bar-balanced': (pedometer.steps / goal.currentGoal * 100)>=70}">
+                            <strong style="white-space: nowrap; color: white; text-shadow: 1px 1px 1px lightgrey"> {{pedometer.steps / goal.currentGoal * 100 | number : 0}}% </strong>
+                        </div>
+                    </div>
+                    <!-- <md-progress-linear class="md-accent" md-mode="determinate" value="{{pedometer.steps / goal.currentGoal * 100}}"></md-progress-linear> -->
+
+                </div>
+                <p>
+                    <br/><i class="icon ion-stats-bars"></i> Steps: {{pedometer.steps}} / {{goal.currentGoal}}
+                     <br/><i class="icon ion-clock"></i> Time Walking: 1 hour 20 Mins
+                </p>
+            </div>
+            <md-list-item class="balanced startButton" style="margin: 20px 10px;" ng-click="startWalking()">
+                <p><i class="fa fa-play-circle"></i> Start</p>
+            </md-list-item>
+            <!-- <div class="row" style="text-align:-webkit-center;">
+                <div class="col">
+                    <md-button class="md-raised button button-full button-balanced" style="width:60%;" ng-click="startWalking()">
+                        <i class="fa fa-play-circle"></i> Start
+                    </md-button>
+                </div> -->
             </div>
         </div>
-        <div class="row" style="text-align:-webkit-center;">
-            <div class="col">
-                <button class="button button-large button-balanced" style="width:60%;" ng-click="startWalking()">
-                    Start
-                </button>
-            </div>
-        </div>
-        <div class="card">
-            <div class="item item-divider">
+        <!-- <div class="card">
+            <div class="item item-divider item-balanced">
                 Current Goal
             </div>
             <div class="item item-text-wrap">
@@ -33,17 +57,15 @@
                     <br/> Time Walking: 1 hour 20 Mins
                 </div>
             </div>
-        </div>
-        <div class="card">
-            <div class="item item-divider">
-                Lifetime Statistics
+        </div> -->
+        <div class="list">
+            <div class="item item-divider item-stable">
+                <i class="icon ion-arrow-graph-up-right"></i> Lifetime Statistics
             </div>
-            <div class="item item-text-wrap">
-                <div class="row">
-                    Steps: 22,091
-                    <br/> Time Walking: 5 hour 20 Mins
-                    <br/> Overall Well-Being Rating: 78%
-                </div>
+            <div class="item item-text-wrap item-stable">
+                <p><i class="icon ion-stats-bars"></i>  Steps: 22,091</p>
+                <p><i class="icon ion-clock"></i> Time Walking: 5 hour 20 Mins</p>
+                <p><i class="icon ion-heart"></i> Overall Well-Being Rating: 78%</p>
             </div>
         </div>
     </ion-content>

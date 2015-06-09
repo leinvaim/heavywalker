@@ -8,6 +8,6 @@
     "lodash": "~3.8.0",
     "fontawesome": "~4.3.0",
     "ionicons": "~2.0.1",
-    "angular-material": "~0.9.0"
+    "angular-material": "~0.9.8"
   }
 }
