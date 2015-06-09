@@ -19,8 +19,10 @@ angular.module('starter')
          */
         function getUser() {
             vm.user = JSON.parse(window.localStorage.userID);
-            vm.user.name = vm.user.user;
-            vm.user.memberSince = new Date();
+            // Initialize some defaults here
+            // TODO put the user stuff into a service
+            vm.user.name = vm.user.name || vm.user.user;
+            vm.user.memberSince = vm.user.memberSince || new Date().getTime();
             return vm.user;
         }
 
