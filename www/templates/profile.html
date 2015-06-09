@@ -4,20 +4,20 @@
             <div>
                 <div class="item item-avatar">
                     <img src="img/profilepic.jpg">
-                    <h2>Jordan McFly</h2>
-                    <p>November 05, 1992</p>
+                    <h2>{{ user.name }}</h2>
+                    <p>{{ user.memberSince | date:'d MMMM yyyy' }}</p>
                 </div>
                 <div class="list">
                     <label class="item item-input">
-                        <span class="input-label">Height</span>
-                        <input type="number" ng-model="user.height" style="width: 30px;"> CM
+                        <span class="input-label">Height (cm)</span>
+                        <input type="number" ng-model="user.height" style="width: 30px;">
                     </label>
                     <label class="item item-input">
-                        <span class="input-label">Weight</span>
-                        <input type="number" ng-model="user.weight" style="width: 30px;"> KG
+                        <span class="input-label">Weight (kg)</span>
+                        <input type="number" ng-model="user.weight" style="width: 30px;">
                     </label>
                 </div>
-                <button ng-click="update()">
+                <button class="button button-balanced button-block" ng-click="update()">
                     <i class="icon ion-chatbox"></i> Update Profile
                 </button>
             </div>

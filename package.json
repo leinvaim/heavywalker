@@ -17,7 +17,15 @@
   "cordovaPlugins": [
     "org.apache.cordova.device",
     "org.apache.cordova.console",
-    "com.ionic.keyboard"
+    "com.ionic.keyboard",
+    "org.apache.cordova.device-motion",
+    "org.apache.cordova.dialogs",
+    "org.apache.cordova.vibration",
+    "https://github.com/apache/cordova-plugin-device-orientation.git",
+    "https://github.com/leecrossley/cordova-plugin-pedometer.git"
   ],
-  "cordovaPlatforms": []
+  "cordovaPlatforms": [
+    "ios",
+    "android"
+  ]
 }

@@ -14,7 +14,7 @@ angular.module('starter')
     var options = {
         frequency: 100 // milliseconds
     };
-    
+
     $scope.currentWalkingVelocity = 0; // m/s
     $scope.currentSteppingVelocity = 0; // m/s
     $scope.dangerToWellBeingRatio = 0;
@@ -57,27 +57,6 @@ angular.module('starter')
 
     $scope.pedometer = pedometerService;
     $scope.goal = goalService;
-    /***********************************
-     * Pedometer
-     * Use different ondeviceready - ionic version
-     * return number of steps.
-     *************************************/
-    // $ionicPlatform.ready(function() {
-    //         console.log('running');
-    //         console.log('pedometer', pedometer);
-    //         var successHandler = function() {
-    //             console.log('it works');
-    //             pedometer.startPedometerUpdates(function(data) {
-    //                 $scope.pedometer.steps = data.numberOfSteps;
-    //             }, function(){
-    //                 console.log('no data');
-    //             });
-    //         };
-    //         var failureCallback = function() {
-    //             console.log('error');
-    //         };
-    //         pedometer.isStepCountingAvailable(successHandler, failureCallback);
-    //     });
 
 
     /*******************************************
@@ -113,8 +92,13 @@ angular.module('starter')
         }, false);
     }
 
+
+    var isAlert = false;
+
     function alertDismissed() {
         // do something
+        isAlert = false;
+        console.log('alertDismissed');
     }
 
     // Show a custom alertDismissed
@@ -132,8 +116,8 @@ angular.module('starter')
         //navigator.notification.vibrate([1000, 500, 1000, 500, 1000]);
     }
 
-    $scope.showAlert = showAlert;
-    
+    //$scope.showAlert = showAlert;
+
     // Updates the danger to well-being ratio of a user
     function updateWellbeing() {
         // Get user BMI based upon weight and height, BMI = weight(kg) / height(m)^2
@@ -164,10 +148,87 @@ angular.module('starter')
              $scope.workingRatioValues.pop(); // remove last value
              showAlertIfInDanger();
         }
+/*
+
+// Hardcoded at this stage to test, to be replace with logged in user details
+        // TODO change algorithm values from service to camel case
+        $scope.dangerToWellBeingRatio = (userBMI / $scope.algorithmValues.critical_bmi) *
+            (getCurrentWalkingVelocity() / thisCriticalWalkingSpeed) *
+            (getCurrentSteppingVelocity() / $scope.algorithmValues.critical_stepping_velocity);
+
+        // Lets do some logging!!!
+        console.log('Current Walking Velocity', $scope.currentWalkingVelocity);
+        console.log('Current Stepping Velocity', $scope.currentSteppingVelocity);
+
+        console.log('wellBeingratio', $scope.dangerToWellBeingRatio);
+        if ($scope.dangerToWellBeingRatio < 0.4) {
+            $scope.wellBeing = 'good';
+            console.log('good');
+        } else
+        if ($scope.dangerToWellBeingRatio < 1) {
+            $scope.wellBeing = 'caution';
+            console.log('caution');
+        } else
+        if ($scope.dangerToWellBeingRatio < 1.7) {
+            $scope.wellBeing = 'danger';
+            console.log('danger');
+            //showAlert('Slow Down');
+
+        } else {
+            $scope.wellBeing = 'stop';
+            console.log('stop');
+            showAlert('Stop Exercising');
+        }
+
+
+*/
         
     }
     
     // Approximates the current velocity of the user
+    // function getCurrentWalkingVelocity() {
+    //     if (isUserMoving()) {
+    //         if (!$scope.isAlreadyWalking) {
+    //             // The user has just started walking, store initial x and z directions
+    //             $scope.isXNegative = $scope.accelerometer.X < 0;
+    //             $scope.isZNegative = $scope.accelerometer.Z < 0;
+    //             $scope.isAlreadyWalking = true;
+    //         }
+
+    //         // Find overall acceleration in x and z directions (ie. not the 'up-down' direction)
+    //         // Assumes the phone is upright in the pocket
+    //         // overall acceleration = sqrt(x^2 + z^2)
+    //         var overallAcceleration = Math.sqrt($scope.accelerometer.X * $scope.accelerometer.X +
+    //             $scope.accelerometer.Z * $scope.accelerometer.Z);
+    //         console.log('current acceleration', overallAcceleration);
+
+    //         // Is the user speeding up or slowing down compared to initial direction?
+    //         var direction = -1; // initialise as opposite direction
+
+    //         if ($scope.isXNegative == ($scope.accelerometer.X < 0) && $scope.isZNegative == ($scope.accelerometer.Z < 0)) {
+    //             // same direction
+    //             direction = 1;
+    //         }
+    //         console.log('direction', direction);
+    //         // velocity = initial velocity + acceleration * time
+    //         $scope.currentWalkingVelocity = $scope.currentWalkingVelocity +
+    //             direction * overallAcceleration * (options.frequency / 1000);
+
+    //         // $scope.currentWalkingVelocity = overallAcceleration * (options.frequency / 1000);
+
+    //         return $scope.currentWalkingVelocity;
+
+    //     } else {
+    //         return $scope.currentWalkingVelocity; // user has not sped up
+    //     }
+
+
+    // }
+
+
+
+
+
     function getCurrentWalkingVelocity() {
         if (isUserMoving()) {
             if (!$scope.isAlreadyWalking) {
@@ -200,7 +261,7 @@ angular.module('starter')
             return $scope.currentWalkingVelocity; // user has not sped up
         }
     }
-    
+
     // Approximates the current stepping velocity of the user
     function getCurrentSteppingVelocity() {
         // determine if the user is moving
@@ -209,7 +270,7 @@ angular.module('starter')
             if ($scope.accelerometer.Y > GRAVITY) {
                 // Downward stepping velocity can be found using acceleration in the y direction
                 // velocity = initial velocity + acceleration * time
-                $scope.currentSteppingVelocity = $scope.currentSteppingVelocity + 
+                $scope.currentSteppingVelocity = $scope.currentSteppingVelocity +
                     ($scope.accelerometer.Y - GRAVITY) * (options.frequency / 1000);
             } else {
                 // User is stepping upward, reset stepping velocity
@@ -225,12 +286,38 @@ angular.module('starter')
             }
 
             return $scope.currentSteppingVelocity;
-            
+
         } else {
             return  $scope.currentSteppingVelocity; // user is not moving, use last stepping velocity until next step is made
         }
     }
-    
+
+
+    // function getCurrentSteppingVelocity() {
+    //     // determine if the user is moving
+    //     //if (isUserMoving()) {
+    //     // determine if user is stepping downward
+    //     if ($scope.accelerometer.Y > GRAVITY) {
+    //         // Downward stepping velocity can be found using acceleration in the y direction
+    //         // velocity = initial velocity + acceleration * time
+    //         // $scope.currentSteppingVelocity = $scope.currentSteppingVelocity +
+    //         //     ($scope.accelerometer.Y - GRAVITY) * (options.frequency / 1000);
+    //         $scope.currentSteppingVelocity =
+    //             ($scope.accelerometer.Y - GRAVITY) * (options.frequency / 1000);
+    //     } else {
+    //         // User is stepping upward, reset stepping velocity
+    //         $scope.currentSteppingVelocity = 0;
+    //     }
+
+
+    //     return $scope.currentSteppingVelocity;
+
+    //     // } else {
+    //     //     return $scope.currentSteppingVelocity; // user is not moving, use last stepping velocity until next step is made
+    //     // }
+
+    // }
+
     // determine if the user is moving
     function isUserMoving() {
         // find overall acceleration and see if this is more than gravity alone

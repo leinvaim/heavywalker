@@ -1,12 +1,117 @@
-<ion-view view-title="Walking">
+<ion-view view-title="Current Walk" class="walking">
     <ion-content>
-        <h4>Current Walk</h4>
+        <div class="list" style="margin:0;">
+            <!-- <div class="item item-divider">
+                Well Being Status
+            </div> -->
+            <div class="item item-text-wrap item-dark">
+                <h1 class="md-title balanced">Well Being Status</h1>
+                <div class="row">
+                    <span ng-show="!wellBeing">N/A</span>
+                    <span ng-show="wellBeing ==='good'" class="balanced">Going Well</span>
+                    <span ng-show="wellBeing ==='caution'" class="energized">Caution</span>
+                    <span ng-show="wellBeing ==='danger'" class="assertive">Danger</span>
+                </div>
+            </div><!-- 
+            <div class="item item-text-wrap wellBeingGood" ng-show="!wellBeing">
+                <div class="row">
+                    N/A
+                </div>
+            </div>
+            <div class="item item-text-wrap wellBeingGood" ng-show="wellBeing === 'good'">
+                <div class="row">
+                    Going Well
+                </div>
+            </div>
+            <div class="item item-text-wrap wellBeingCaution" ng-show="wellBeing === 'caution'">
+                <div class="row">
+                    Caution
+                </div>
+            </div>
+            <div class="item item-text-wrap" ng-show="wellBeing === 'danger'">
+                <div class="row">
+                    Danger
+                </div>
+            </div> -->
+        </div>
+        <div class="item">
+            <!-- <h1 class="md-title balanced">Current Walk</h1> -->
+            <div class="row">
+                <div class="col col-50">
+                    <div class="card list">
+                        <div class="item item-icon-left item-balanced"><i class="icon ion-stats-bars"></i> Steps</div>
+                        <div class="item item-stable">
+                            <p>{{pedometer.steps}}</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-50">
+                <div class="card list">
+                    <div class="item item-icon-left item-balanced"><i class="icon ion-checkmark-circled"></i> Current Goal</div>
+                    <div class="item item-stable">
+                        <p>{{goal.currentGoal}}</p>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col col-50">
+                    <div class="card list">
+                        <div class="item item-icon-left item-balanced"><i class="icon fa fa-flag-o"></i> Distance</div>
+                        <div class="item item-stable">
+                            <p>{{pedometer.steps * 0.6 | number : 2}} M</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-50">
+                <div class="card list">
+                    <div class="item item-icon-left item-balanced"><i class="icon ion-speedometer"></i> Speed</div>
+                    <div class="item item-stable">
+                        <p>0</p>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+        <!-- <div class="row">
+            <ion-item class="col col-50 item-dark">
+                <strong>Steps</strong>
+            </ion-item>
+            <ion-item class="col col-50 item-dark">
+                Current Goal
+            </ion-item>
+        </div>
+        <div class="row">
+            <ion-item class="col col-50 item-stable">
+                <p>{{pedometer.steps}}</p>
+            </ion-item>
+            <ion-item class="col col-50 item-stable">
+                <p>{{goal.currentGoal}}</p>
+            </ion-item>
+        </div>
+        <div class="row">
+            <ion-item class="col col-50 item-dark">
+                Distance
+            </ion-item>
+            <ion-item class="col col-50 item-dark">
+                Speed
+            </ion-item>
+        </div>
+        <div class="row">
+            <ion-item class="col col-50 item-stable">
+                <p>{{pedometer.steps * 0.6}} meters</p>
+            </ion-item>
+            <ion-item class="col col-50 item-stable">
+                <p>0</p>
+            </ion-item>
+        </div> -->
+        <!-- <h4>Current Walk</h4>
         <div class="row">
             <ion-item class="col col-50">
                 Steps: {{pedometer.steps}}
             </ion-item>
             <ion-item class="col col-50">
-                Current Goal: {{goal.currentGoal}}
+                Current Goal
             </ion-item>
         </div>
         <div class="row">
@@ -14,29 +119,27 @@
                 Distance
             </ion-item>
             <ion-item class="col col-50">
-                Speed: {{currentWalkingVelocity}} m/s
+                Speed
             </ion-item>
-        </div>
-
-        <div class="row" style="margin-top:15px;">
+        </div> -->
+        <!-- <div class="row" style="margin-top:15px;">
             <div style="background-color:gray; width: 100%">
                 <div style="height: 40px; width: {{pedometer.steps / goal.currentGoal * 100}}%; max-width: 100%; transition: width 0.1s; background: palegreen; text-align:center; padding:5px;">
                     <strong style="white-space: nowrap; top:10px;"> {{pedometer.steps / goal.currentGoal * 100 | number : 0}}% </strong>
                 </div>
             </div>
-        </div>
-        <div class="card">
-            <div class="item item-divider">
-                Well Being Status
-            </div>
-            <!-- TODO add ngStyle for different wellBeingStatuses -->
-            <div class="item item-text-wrap">
-                <div class="row">
-                    {{wellBeingStatus}}
+        </div> -->
+        <div class="item">
+            <h1 class="md-title balanced">Progress</h1>
+            <div style="background-color:#EAEAEA; width: 100%; border-radius: 5px;">
+                <!-- <div style="height: 30px; width: {{pedometer.steps / goal.currentGoal * 100}}%; max-width: 100%; transition: width 0.1s; text-align:center; padding:5px;" class="item bar" ng-class="{bar-balanced: (progress < 70 && progress >=30), bar-assertive: (progress < 30), bar-balanced: (proress >=70)}"> -->
+                <div style="height: 30px; width: {{pedometer.steps / goal.currentGoal * 100}}%; max-width: 100%; transition: width 0.1s; text-align:center; padding:5px; border: 0; border-radius: 5px;" class="item bar" ng-class="{'bar-assertive': (pedometer.steps / goal.currentGoal * 100)<30, 'bar-energized': (pedometer.steps / goal.currentGoal * 100)>=30&&(pedometer.steps / goal.currentGoal * 100)<70, 'bar-balanced': (pedometer.steps / goal.currentGoal * 100)>=70}">
+                    <strong style="white-space: nowrap; color: white; text-shadow: 1px 1px 1px lightgrey"> {{pedometer.steps / goal.currentGoal * 100 | number : 0}}% </strong>
                 </div>
             </div>
+            <!-- <md-progress-linear class="md-accent" md-mode="determinate" value="{{pedometer.steps / goal.currentGoal * 100}}"></md-progress-linear> -->
         </div>
-        <div class="row" style="text-align:-webkit-center;">
+        <!-- <div class="row" style="text-align:-webkit-center;">
             <div class="col">
                 <button class="button button-large button-assertive" style="width:50%;" ng-click="pause()" ng-show="isStarted">
                     <i class="fa fa-pause"></i>
@@ -45,6 +148,28 @@
                     Start
                 </button>
             </div>
+        </div> -->
+        <md-list-item class="balanced pauseButton" style="margin: 20px 10px;" ng-click="pause()"  ng-show="isStarted">
+            <p><i class="fa fa-pause"></i> Stop</p>
+        </md-list-item>
+        <md-list-item class="balanced startButton" style="margin: 20px 10px;" ng-click="start()"  ng-show="isPaused">
+            <p><i class="fa fa-play-circle"></i> Start</p>
+        </md-list-item>
+        <!-- <div>
+            {{algorithmValues}}
         </div>
+        <div>
+            X: {{accelerometer.X | number : 0}}
+            <br/> Y: {{accelerometer.Y| number : 0}}
+            <br/> Z: {{accelerometer.Z | number : 0}}
+            <br/> time: {{accelerometer.timeStamp}}
+            <br/> danger to well being ratio: {{dangerToWellBeingRatio}}
+        </div> -->
+        <!-- <div>
+                        <button class="button button-large button-assertive" style="width:50%;" ng-click="showAlert()">
+                Show Alert
+            </button>
+            Walking speed: {{currentWalkingVelocity | number : 2}} Stepping speed: {{currentSteppingVelocity | number : 2}}
+        </div> -->
     </ion-content>
 </ion-view>
