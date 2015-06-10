@@ -11,12 +11,12 @@ angular.module('starter')
         steps: 120
     }, {
         username: 'Dawood',
-        steps: 111
+        steps: 500
     }, {
         username: $scope.user.username,
         steps: pedometerService.steps
     }, {
         username: 'Kelvin',
-        steps: 12000
+        steps: 5000
     }];
 });

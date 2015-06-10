@@ -7,12 +7,14 @@
             <div class="item item-text-wrap item-dark">
                 <h1 class="md-title balanced">Well Being Status</h1>
                 <div class="row">
-                    <span ng-show="!wellBeing">N/A</span>
-                    <span ng-show="wellBeing ==='good'" class="balanced">Going Well</span>
-                    <span ng-show="wellBeing ==='caution'" class="energized">Caution</span>
-                    <span ng-show="wellBeing ==='danger'" class="assertive">Danger</span>
+                    <span ng-show="wellBeingStatus === 'Not enough data collected'">Start walking to see well being status</span>
+                    <span ng-show="wellBeingStatus ==='Safe'" class="balanced">Going Well</span>
+                    <span ng-show="wellBeingStatus ==='Caution'" class="energized">Caution</span>
+                    <span ng-show="wellBeingStatus ==='Danger'" class="assertive">Danger</span>
+                    <span ng-show="wellBeingStatus ==='Stop!!!'" class="assertive">STOP!</span>
                 </div>
-            </div><!-- 
+            </div>
+            <!-- 
             <div class="item item-text-wrap wellBeingGood" ng-show="!wellBeing">
                 <div class="row">
                     N/A
@@ -46,12 +48,12 @@
                     </div>
                 </div>
                 <div class="col col-50">
-                <div class="card list">
-                    <div class="item item-icon-left item-balanced"><i class="icon ion-checkmark-circled"></i> Current Goal</div>
-                    <div class="item item-stable">
-                        <p>{{goal.currentGoal}}</p>
+                    <div class="card list">
+                        <div class="item item-icon-left item-balanced"><i class="icon ion-checkmark-circled"></i> Current Goal</div>
+                        <div class="item item-stable">
+                            <p>{{goal.currentGoal}}</p>
+                        </div>
                     </div>
-                </div>
                 </div>
             </div>
             <div class="row">
@@ -64,12 +66,12 @@
                     </div>
                 </div>
                 <div class="col col-50">
-                <div class="card list">
-                    <div class="item item-icon-left item-balanced"><i class="icon ion-speedometer"></i> Speed</div>
-                    <div class="item item-stable">
-                        <p>0</p>
+                    <div class="card list">
+                        <div class="item item-icon-left item-balanced"><i class="icon ion-speedometer"></i> Speed</div>
+                        <div class="item item-stable">
+                            <p>{{currentWalkingVelocity | number : 2}} m/s</p>
+                        </div>
                     </div>
-                </div>
                 </div>
             </div>
         </div>
@@ -149,10 +151,10 @@
                 </button>
             </div>
         </div> -->
-        <md-list-item class="balanced pauseButton" style="margin: 20px 10px;" ng-click="pause()"  ng-show="isStarted">
+        <md-list-item class="balanced pauseButton" style="margin: 20px 10px;" ng-click="pause()" ng-show="isStarted">
             <p><i class="fa fa-pause"></i> Stop</p>
         </md-list-item>
-        <md-list-item class="balanced startButton" style="margin: 20px 10px;" ng-click="start()"  ng-show="isPaused">
+        <md-list-item class="balanced startButton" style="margin: 20px 10px;" ng-click="start()" ng-show="isPaused">
             <p><i class="fa fa-play-circle"></i> Start</p>
         </md-list-item>
         <!-- <div>
